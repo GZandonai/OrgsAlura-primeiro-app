@@ -8,6 +8,7 @@ import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
+import br.com.alura.orgs.dao.ProdutosDao
 import br.com.alura.orgs.model.Produto
 import java.math.BigDecimal
 
@@ -38,6 +39,9 @@ class FormProdutoActivity : AppCompatActivity() {
                 nome = nome, descricao = descricao, valor = valor)
 
             Log.i ("FormProdutoActivity", "onCreate: $produtoNovo")
+            val dao = ProdutosDao()
+            dao.adiciona(produtoNovo)
+            Log.i ("FormProdutoActivity", "onCreate: ${dao.buscaTodos()}")
         }
     }
 }
