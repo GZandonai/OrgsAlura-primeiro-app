@@ -17,6 +17,10 @@ class FormProdutoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form_produto)
 
+        configuraButtonAdd()
+    }
+
+    private fun configuraButtonAdd() {
         val botaoSalvar = findViewById<Button>(R.id.botao_salvar)
         botaoSalvar.setOnClickListener {
             val campoNome = findViewById<EditText>(R.id.nome)
@@ -27,21 +31,18 @@ class FormProdutoActivity : AppCompatActivity() {
 
             val campoNumero = findViewById<EditText>(R.id.valor)
             val valorEmTexto = campoNumero.text.toString()
-           val valor = if(valorEmTexto.isBlank()){
+            val valor = if (valorEmTexto.isBlank()) {
                 BigDecimal.ZERO
-            } else{
-                    BigDecimal(valorEmTexto)
-                }
-
-
+            } else {
+                BigDecimal(valorEmTexto)
+            }
 
             val produtoNovo = Produto(
-                nome = nome, descricao = descricao, valor = valor)
+                nome = nome, descricao = descricao, valor = valor
+            )
 
-            Log.i ("FormProdutoActivity", "onCreate: $produtoNovo")
             val dao = ProdutosDao()
             dao.adiciona(produtoNovo)
-            Log.i ("FormProdutoActivity", "onCreate: ${dao.buscaTodos()}")
         }
     }
 }
