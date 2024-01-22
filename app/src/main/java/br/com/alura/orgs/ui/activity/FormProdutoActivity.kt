@@ -8,6 +8,8 @@ import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
+import br.com.alura.orgs.model.Produto
+import java.math.BigDecimal
 
 class FormProdutoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +20,24 @@ class FormProdutoActivity : AppCompatActivity() {
         botaoSalvar.setOnClickListener {
             val campoNome = findViewById<EditText>(R.id.nome)
             val nome = campoNome.text.toString()
-            Log.i("FormProdutoActivity", "onCreate: $nome")
+
+            val campoDescricao = findViewById<EditText>(R.id.descricao)
+            val descricao = campoDescricao.text.toString()
+
+            val campoNumero = findViewById<EditText>(R.id.valor)
+            val valorEmTexto = campoNumero.text.toString()
+           val valor = if(valorEmTexto.isBlank()){
+                BigDecimal.ZERO
+            } else{
+                    BigDecimal(valorEmTexto)
+                }
+
+
+
+            val produtoNovo = Produto(
+                nome = nome, descricao = descricao, valor = valor)
+
+            Log.i ("FormProdutoActivity", "onCreate: $produtoNovo")
         }
     }
 }
