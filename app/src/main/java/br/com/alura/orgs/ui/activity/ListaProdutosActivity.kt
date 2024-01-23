@@ -12,26 +12,31 @@ import br.com.alura.orgs.ui.recyclerview.adapter.ListaProdutosAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ListaProdutosActivity : AppCompatActivity(R.layout.activity_lista_produtos) {
- private  val dao = ProdutosDao()
+
+    private val dao = ProdutosDao()
     private val adapter = ListaProdutosAdapter(context = this, produtos = dao.buscaTodos())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         configuraRecyclerView()
+        configuraFab()
     }
 
     override fun onResume() {
         super.onResume()
         adapter.atualiza(dao.buscaTodos())
-        configuraFab()
     }
 
     private fun configuraFab() {
         val fab = findViewById<FloatingActionButton>(R.id.fabButton_add)
         fab.setOnClickListener {
-            val intent = Intent(this, FormProdutoActivity::class.java)
-            startActivity(intent)
-            finish()
+            vaiParaFormularioProduto()
         }
+    }
+
+    private fun vaiParaFormularioProduto() {
+        val intent = Intent(this, FormProdutoActivity::class.java)
+        startActivity(intent)
     }
 
     private fun configuraRecyclerView() {

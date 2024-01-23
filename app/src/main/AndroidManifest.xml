@@ -8,14 +8,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Orgs">
-        <activity
-            android:name=".ui.activity.FormProdutoActivity"
+        <activity android:name=".ui.activity.FormProdutoActivity"
             android:exported="true"
             android:label="@string/title_activity_form_produto"
             android:theme="@style/Theme.Orgs">
         </activity>
-        <activity
-            android:name=".ui.activity.ListaProdutosActivity"
+        <activity android:name=".ui.activity.ListaProdutosActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
